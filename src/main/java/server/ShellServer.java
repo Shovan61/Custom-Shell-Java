@@ -15,9 +15,6 @@ public class ShellServer {
             String command = scanner.nextLine();
             ParsedCommand parsedCommand = ParsedCommand.fromInput(command);
 
-            if(parsedCommand.command.equals("exit")) {
-                break;
-            }
             CommandHandler.handle(parsedCommand, commands);
 
         }
