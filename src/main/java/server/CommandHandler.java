@@ -11,7 +11,6 @@ public class CommandHandler {
             commands.get(parsedCommand.command).execute(parsedCommand);
         } else {
             System.out.println(parsedCommand.command + ": command not found");
-
         }
     }
 }

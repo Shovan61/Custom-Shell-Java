@@ -2,6 +2,7 @@ import commands.Command;
 import commands.EchoCommand;
 import commands.ExitCommand;
 
+import commands.TypeCommand;
 import server.ShellServer;
 
 import java.util.HashMap;
@@ -13,6 +14,10 @@ public class Main {
         Map<String, Command> commands = new HashMap<>();
         commands.put("exit", new ExitCommand());
         commands.put("echo", new EchoCommand());
+
+        TypeCommand type = new TypeCommand(commands);
+        commands.put("type", type);
+
         ShellServer.start(commands);
     }
 }
