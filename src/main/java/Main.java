@@ -1,13 +1,10 @@
-import commands.Command;
-import commands.EchoCommand;
-import commands.ExitCommand;
+import commands.*;
 
-import commands.TypeCommand;
 import server.ShellServer;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
+
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -17,6 +14,8 @@ public class Main {
 
         TypeCommand type = new TypeCommand(commands);
         commands.put("type", type);
+
+        commands.put("pwd", new PwdCommand());
 
         ShellServer.start(commands);
     }
