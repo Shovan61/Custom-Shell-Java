@@ -1,6 +1,8 @@
 package utils;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,4 +28,12 @@ public class CommandUtils {
     }
 
     public static String currentDirectory = System.getProperty("user.dir");
+
+    public static Path resolveToCurrentDir(String filename) {
+        Path p = Paths.get(filename);
+        if (!p.isAbsolute()) {
+            p = Paths.get(currentDirectory).resolve(p).normalize();
+        }
+        return p;
+    }
 }
