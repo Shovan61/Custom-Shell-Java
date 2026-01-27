@@ -24,4 +24,6 @@ public class CommandUtils {
         String path = System.getenv("PATH");
         return Arrays.stream(path.split(":")).toList();
     }
+
+    public static String currentDirectory = System.getProperty("user.dir");
 }
