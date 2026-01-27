@@ -16,7 +16,6 @@ public class ShellServer {
             ParsedCommand parsedCommand = ParsedCommand.fromInput(command);
 
             CommandHandler.handle(parsedCommand, commands);
-
         }
     }
 }

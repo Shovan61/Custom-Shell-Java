@@ -16,6 +16,7 @@ public class Main {
         commands.put("type", type);
 
         commands.put("pwd", new PwdCommand());
+        commands.put("cd", new CdCommand());
 
         ShellServer.start(commands);
     }
