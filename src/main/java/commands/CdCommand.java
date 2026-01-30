@@ -13,11 +13,13 @@ public class CdCommand implements Command {
         if (command.args.isEmpty()) {
             // Only cd without arguments
             System.err.println("cd: missing argument");
+            return;
         } else {
             // cd with arguments
             if (command.args.size() > 1) {
                 // cd with more than one argument
                 System.err.println("cd: too many arguments");
+                return;
             } else {
                 // cd with one argument
                 String restCommand = command.args.getFirst();

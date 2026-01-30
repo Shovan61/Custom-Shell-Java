@@ -32,9 +32,6 @@ public class CommandHandler {
 
     //This Method is to run a program
     private static int runExecutable(ParsedCommand parsedCommand, List<String> commandLocations) throws IOException, InterruptedException {
-        if (commandLocations.size() > 1) {
-            System.out.println("Multiple executable found!");
-        }
 
         String executablePath = commandLocations.getFirst();
         File executableFile = new File(executablePath);
