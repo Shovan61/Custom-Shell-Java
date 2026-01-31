@@ -30,9 +30,23 @@ public class ParsedCommand {
         StringBuilder current = new StringBuilder();
         boolean inDoubleQuotes = false;
         boolean inSingleQuotes = false;
+        boolean escaped = false;
 
         for (int i = 0; i < line.length(); i++) {
             char ch = line.charAt(i);
+
+            // 1️⃣ If previous char was backslash, take this literally
+            if (escaped) {
+                current.append(ch);
+                escaped = false;
+                continue;
+            }
+
+            // 2️⃣ Backslash outside quotes → escape next character
+            if (ch == '\\' && !inSingleQuotes && !inDoubleQuotes) {
+                escaped = true;
+                continue;
+            }
 
             if (ch == '\'' && !inDoubleQuotes) {
                 inSingleQuotes = !inSingleQuotes; // toggle single quotes
