@@ -35,6 +35,11 @@ public class ParsedCommand {
         for (int i = 0; i < line.length(); i++) {
             char ch = line.charAt(i);
 
+//            Think of escaped as a one-character shield
+//            When escaped == false → normal parsing
+//            When you see \ outside quotes →
+//            don’t append it, but mark the next character as literal
+
             // 1️⃣ If previous char was backslash, take this literally
             if (escaped) {
                 current.append(ch);
@@ -50,6 +55,11 @@ public class ParsedCommand {
 
             if (ch == '\'' && !inDoubleQuotes) {
                 inSingleQuotes = !inSingleQuotes; // toggle single quotes
+                continue;
+            }
+
+            if (inDoubleQuotes && ch == '\\') {
+                escaped = true;
                 continue;
             }
 
@@ -72,6 +82,11 @@ public class ParsedCommand {
         if (!current.isEmpty()) {
             arguments.add(current.toString());
         }
+
+        if (arguments.isEmpty()) {
+            return new ParsedCommand("", List.of());
+        }
+
 
         ParsedCommand parsedCommand = new ParsedCommand(arguments.getFirst());
         parsedCommand.args = arguments.subList(1, arguments.size());
